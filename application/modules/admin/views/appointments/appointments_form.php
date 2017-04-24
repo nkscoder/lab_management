@@ -66,13 +66,35 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+
+                                <div class="col-md-5">
+                        <div class="form-group">
+            <label for="inpuFname">Discount(Rs/%)</label>
+            <div class="input-group">
+                <input type="text" class="form-control input-sm" name="discount" id="discount" placeholder="Discount eg:(10)" value="<?php echo $discount; ?>" />
+                
+                <!-- <div class="input-group-btn bs-dropdown-to-select-group">
+                    <button type="button" class="btn btn-default dropdown-toggle as-is bs-dropdown-to-select" data-toggle="dropdown">
+                        <span data-bind="bs-drp-sel-label">Select...</span>
+                        <input type="hidden" name="selected_value" data-bind="bs-drp-sel-value" value="">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                   <ul class="dropdown-menu" role="menu" style="width:0px">
+                        <li data-value="1"><a href="#">Rs</a></li>
+                        <li data-value="2"><a href="#">%</a></li>
+                    </ul> 
+                </div> -->
+            </div>
+        </div>     
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="int">Discount (%) <?php echo form_error('discount') ?></label>
-                                        <input type="text" class="form-control input-sm" name="discount" id="discount" placeholder="Discount eg:(10)" value="<?php echo $discount; ?>" />
+                                        <label for="int">Discount<?php echo form_error('discount') ?></label>
+                                        <input type="text" value="" class="form-control" id="discount_price" vlaue="<?php echo $discount; ?>" name="text">
                                     </div>        
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="decimal">Test Price (<?php echo $this->config->item('site_currency'); ?>) <span class="text-danger">*</span> <?php echo form_error('test_price') ?></label>
                                         <input type="text" class="form-control input-sm" readonly name="test_price" id="test_price" placeholder="Test Price" value="<?php echo $test_price; ?>" />
@@ -146,3 +168,20 @@
         </div><!-- /.box -->
     </section>
 </div>
+ <script src="<?php echo bower_url('jquery/jquery.min.js'); ?>"></script>
+<script type="text/javascript">
+
+
+$(document).ready(function(e){
+    $( document ).on( 'click', '.bs-dropdown-to-select-group .dropdown-menu li', function( event ) {
+        var $target = $( event.currentTarget );
+        $target.closest('.bs-dropdown-to-select-group')
+            .find('[data-bind="bs-drp-sel-value"]').val($target.attr('data-value'))
+            .end()
+            .children('.dropdown-toggle').dropdown('toggle');
+        $target.closest('.bs-dropdown-to-select-group')
+            .find('[data-bind="bs-drp-sel-label"]').text($target.context.textContent);
+        return false;
+    });
+});
+</script>

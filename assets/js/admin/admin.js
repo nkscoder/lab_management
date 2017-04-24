@@ -1,6 +1,6 @@
 (function(window){
 
-	'use strict';
+    'use strict';
 
     var // Localise globals
         document = window.document,
@@ -10,73 +10,94 @@
 
         ADMIN.createAppointment = {
 
-        		bindEvents : function(){
-        			
-        			$(document).off('change.test').on('change.test', '#test', function(event) {
-        					
-        					if($(this).val()){
+                bindEvents : function(){
+                    
+                    $(document).off('change.test').on('change.test', '#test', function(event) {
+                            
+                            if($(this).val()){
 
-        						var url = ADMIN.base_url+'admin/tests/getTestPrice';
-	        					CIS.Ajax.request(url,{
-	        						type : 'POST',
-	        						context : this,
-	        						data : {'test_id' : $(this).val(), 'csrf_test_name' : $.cookie("csrf_cookie_name")},
-	        						beforeSend : function(){
-	        							$(this).find('[type="submit"]').addClass('disabled');
-	        						},
-	        						success : function(data){
-	        							if(data.status == "SUCCESS"){
-	        								$('#test_price').val(data.test_price);
-	        								$('#total_price').val(data.final_price);
-	        							}
-	        						},
-	        						complete : function(){
-	        							$(this).find('[type="submit"]').removeClass('disabled');
-	        						}
-	        					});
+                                var url = ADMIN.base_url+'admin/tests/getTestPrice';
+                                CIS.Ajax.request(url,{
+                                    type : 'POST',
+                                    context : this,
+                                    data : {'test_id' : $(this).val(), 'csrf_test_name' : $.cookie("csrf_cookie_name")},
+                                    beforeSend : function(){
+                                        $(this).find('[type="submit"]').addClass('disabled');
+                                    },
+                                    success : function(data){
+                                        if(data.status == "SUCCESS"){
 
-        					}else{
-        							$('#test_price').val('');
-    								$('#discount').val('');
-    								$('#total_price').val('');
-        					}	
-        					
-        			});
+                                            $('#test_price').val(data.test_price);
+                                            $('#total_price').val(data.final_price);
+                                        }
+                                    },
+                                    complete : function(){
+                                        $(this).find('[type="submit"]').removeClass('disabled');
+                                    }
+                                });
+
+                            }else{
+                                    $('#test_price').val('');
+                                    $('#discount').val('');
+                                    $('#total_price').val('');
+                            }   
+                            
+                    });
 
 
-        			$(document).off('focusout.discount').on('focusout.discount', '#discount', function(event) {
-        					
-        					var price = parseInt($('#test_price').val());
-        					var discountPercent = parseInt($(this).val());
-        					if(discountPercent && Number.isInteger(discountPercent) && discountPercent <= 100){
-        						    var discount_price = (discountPercent/100)*price,
-        						    	total_price = price-discount_price;
-        						    $('#total_price').val((total_price).toFixed(2));
+                    $(document).off('focusout.discount').on('focusout.discount', '#discount', function(event) {
+                            
+                            
+                            var discountPercent = $(this).val();
+                            var lastChar = discountPercent.substr(discountPercent.length - 1);
+                           
+                            if(lastChar == '%'){
+                            var price = parseInt($('#test_price').val());
+                            var discountPercent = parseInt($(this).val());
+                            if(discountPercent && Number.isInteger(discountPercent) && discountPercent <= 100){
+                                    var discount_price = (discountPercent/100)*price,
+                                        total_price = price-discount_price;
+                                        
+                                    $('#discount_price').val((discount_price).toFixed(2));
+                                    $('#total_price').val((total_price).toFixed(2));
 
-        					}else{
-        						$('#discount').val('');
-        						$('#total_price').val((price).toFixed(2));
-        					}
-        			});
+                            }else{
+                                $('#discount_price').val('');
+                                $('#discount').val('');
+                                $('#total_price').val((price).toFixed(2));
+                            }
+                        }
+                        else
+                        {
+                            var priceRs = parseInt($('#test_price').val());
+                            var discountRs = parseInt($(this).val());
+                            var disRs= (discountRs/priceRs)*100;
+                            var totalRs = priceRs-discountRs;
+                            $('#discount_price').val((disRs).toFixed(2) + "%");
+                            $('#total_price').val((totalRs).toFixed(2));
+                        
+                         
+                        }
+                    });
 
-        			$('#sample_collection_time').ptTimeSelect();
+                    $('#sample_collection_time').ptTimeSelect();
 
-        			$(document).off('change.doctor_ref_by').on('change.doctor_ref_by', '#doctor_ref_by', function(event) {
-        				if($(this).val() == "others"){
-        					$(this).attr('name','');
-        					$("#other_doctor_ref_by").removeClass('hide');
-        					$("#other_doctor_ref_by").attr('name','doctor_ref_by');
-        				}else{
-        					$(this).attr('name','doctor_ref_by');
-        					$("#other_doctor_ref_by").addClass('hide');
-        					$("#other_doctor_ref_by").attr('name','');
-        				}
-        			});
+                    $(document).off('change.doctor_ref_by').on('change.doctor_ref_by', '#doctor_ref_by', function(event) {
+                        if($(this).val() == "others"){
+                            $(this).attr('name','');
+                            $("#other_doctor_ref_by").removeClass('hide');
+                            $("#other_doctor_ref_by").attr('name','doctor_ref_by');
+                        }else{
+                            $(this).attr('name','doctor_ref_by');
+                            $("#other_doctor_ref_by").addClass('hide');
+                            $("#other_doctor_ref_by").attr('name','');
+                        }
+                    });
 
-        		},
-	        	init : function(){
-	        		this.bindEvents();
-	        	}
+                },
+                init : function(){
+                    this.bindEvents();
+                }
 
         }
 
