@@ -185,6 +185,7 @@ class Appointments extends MY_Controller
         'report_doc' => '',
         'payment_status' => $this->input->post('payment_status',TRUE),
         );
+            print_r($data);
             $this->appointments_model->insert_appointment($data);
             $this->session->set_flashdata('message', 'Appointment Saved Successfully.');
             redirect(site_url('admin/appointments'));

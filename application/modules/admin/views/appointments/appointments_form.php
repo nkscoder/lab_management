@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="int">Discount<?php echo form_error('discount') ?></label>
+                                        <label for="">Discount<?php echo form_error('discount') ?></label>
                                         <input type="text" value="" class="form-control" id="discount_price" vlaue="<?php echo $discount; ?>" name="text">
                                     </div>        
                                 </div>

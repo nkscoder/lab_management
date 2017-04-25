@@ -296,3 +296,27 @@
         }
 
 })(window);
+$('document').ready(function(){
+
+    (function( $ ){
+      $.fn.investPage = function() {    
+            $('#payment_status').change(function() {    
+      var selectValp = $('#payment_status :selected').val();
+      if(selectValp !='')
+      {
+         $(".btn-danger").attr("disabled","disabled");
+      }
+     });
+    $('#appointment_status').change(function() {    
+     var selectVala = $('#appointment_status :selected').val();
+     
+   }); 
+            
+      };
+})( jQuery );
+   
+var page = $.fn.investPage();
+
+
+
+});
