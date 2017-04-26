@@ -25,6 +25,12 @@ class Appointments_model extends MY_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    function generate_get_by_id($id){
+        $this->db->where($this->id, $id);
+         return $this->db->get($this->table)->result_array();
+
+    }
     
     // get total rows
     function total_rows($q = NULL) {

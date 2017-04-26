@@ -106,6 +106,8 @@ $route['admin/appointments/uploadReportsForm'] = "admin/appointments/uploadRepor
 $route['admin/appointments/uploadReports'] = "admin/appointments/uploadReports";
 $route['admin/appointments/sendMail'] = "admin/appointments/sendMail";
 
+$route['admin/appointments/generate/(:num)'] = "admin/appointments/generate/$1";
+
 //email settings module routes
 $route['admin/emailsettings'] = "admin/emailsettings/index";
 $route['admin/emailsettings/updateAction'] = "admin/emailsettings/updateAction";

@@ -102,7 +102,8 @@
                         echo '<span class="label label-warning">'.humanize($appointments->appointment_status).'</span>';
                     break;
                 case 'generated':
-                        echo '<span class="label label-success">'.humanize($appointments->appointment_status).'</span>';
+//                        echo '<span class="label label-success">'.humanize($appointments->appointment_status).'</span>';
+                    echo '<span class="label label-success" id="appoint-generate-List">'. anchor(site_url('admin/appointments/generate/'.$appointments->id),humanize($appointments->appointment_status)).'</span>';
                     break;
                 case 'cancelled':
                         echo '<span class="label label-danger">'.humanize($appointments->appointment_status).'</span>';

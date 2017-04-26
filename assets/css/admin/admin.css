@@ -1,6 +1,10 @@
 #appointments_pagination .pagination{
   margin : 0px !important;
 }
+
+span#appoint-generate-List a {
+  color :white;
+}
 #sing{
 	position: absolute;
   height: 33px;
