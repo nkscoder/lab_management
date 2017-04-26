@@ -45,13 +45,15 @@
                     });
 
 
-                    $(document).off('focusout.discount').on('focusout.discount', '#discount', function(event) {
-                            
-                            
-                            var discountPercent = $(this).val();
-                            var lastChar = discountPercent.substr(discountPercent.length - 1);
-                           
-                            if(lastChar == '%'){
+                    $(document).off('focusout.sing').on('focusout.sing', '#discount', function(event) {
+                             
+
+                           var d = $( "#sing option:selected" ).text();
+
+                            var discountPercent = $(this).val()+d;
+                           var lastChar = discountPercent.substr(discountPercent.length - 1);
+                           alert(discountPercent);
+                            if(d == '%'){
                             var price = parseInt($('#test_price').val());
                             var discountPercent = parseInt($(this).val());
                             if(discountPercent && Number.isInteger(discountPercent) && discountPercent <= 100){

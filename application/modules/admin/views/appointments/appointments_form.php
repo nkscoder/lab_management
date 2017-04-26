@@ -1,3 +1,13 @@
+<style type="text/css">
+/*#sing {
+    float: right;
+    margin-top: 2px;
+    padding: 3px;
+    padding-top: 3px;
+
+    position: absolute;
+}*/
+</style>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -73,18 +83,20 @@
             <div class="input-group">
                 <input type="text" class="form-control input-sm" name="discount" id="discount" placeholder="Discount eg:(10)" value="<?php echo $discount; ?>" />
                 
-                <!-- <div class="input-group-btn bs-dropdown-to-select-group">
-                    <button type="button" class="btn btn-default dropdown-toggle as-is bs-dropdown-to-select" data-toggle="dropdown">
+                <!-- <div class="input-group-btn bs-dropdown-to-select-group"> -->
+                    <!-- <button type="button" class="btn btn-default dropdown-toggle as-is bs-dropdown-to-select" data-toggle="dropdown">
                         <span data-bind="bs-drp-sel-label">Select...</span>
                         <input type="hidden" name="selected_value" data-bind="bs-drp-sel-value" value="">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                   <ul class="dropdown-menu" role="menu" style="width:0px">
-                        <li data-value="1"><a href="#">Rs</a></li>
-                        <li data-value="2"><a href="#">%</a></li>
-                    </ul> 
-                </div> -->
+                    </button> -->
+                     <select id="sing" name="sing" required >
+                      <option value="rs">Rs.</option>
+                      <option value="%">%</option>
+                      </select>                     
+                <!-- </div> -->
+
+
             </div>
         </div>     
                                 </div>
